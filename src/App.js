@@ -4,6 +4,7 @@ import Footer from './Components/Footer';
 import Detalle from './Components/Detalle';
 import Header from './Components/Header';
 import Resultados from './Components/Resultados';
+import Contacto from './Components/Contacto';
 import Favoritos from './Components/Favoritos';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -78,6 +79,10 @@ function App() {
               <Route
                     path="/listado"
                     element={<Listado addOrRemoveFavorite={addOrRemoveFavorite}/>}
+              />
+              <Route
+                    path="/contacto"
+                    element={<Contacto/>}
               />
               <Route
                     path="/detalle"
