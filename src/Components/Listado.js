@@ -4,8 +4,8 @@ import axios from "axios";
 import swal from "@sweetalert/with-react";
 
 function Listado (props){
-    const navigate = useNavigate();
-    const addOrRemoveFavorite=props.addOrRemoveFavorite;
+        const navigate = useNavigate();
+    const addOrRemoveFavs=props.addOrRemoveFavorite;
     let token = sessionStorage.getItem("token");
     const [listadoPeliculas, setListadoPeliculas] = useState([]);
 
@@ -34,7 +34,7 @@ function Listado (props){
                     <div className="card">
                         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..."/>
                         <button className="favorite-btn" 
-                        onClick={addOrRemoveFavorite}
+                        onClick={addOrRemoveFavs}
                         data-movie-id={movie.id}
                         >🖤</button>
                         <div className="card-body">

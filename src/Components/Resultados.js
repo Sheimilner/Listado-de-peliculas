@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import swal from "@sweetalert/with-react";
 import axios from "axios";
-import {Link} from "react-router-dom";
-function Resultados (){
+import {Link, Navigate} from "react-router-dom";
+function Resultados (props){
+    let token = sessionStorage.getItem("token");
+    const addOrRemoveFavs=props.addOrRemoveFavorite;
     let query = new URLSearchParams(window.location.search);
     let keyword = query.get("word");
     const [moviesResults, setMoviesResults] = useState([]);
@@ -26,6 +28,7 @@ function Resultados (){
     return(
         <>
         <h2>Your results for {keyword}</h2>
+        {!token && <Navigate to="/"/>} 
         {moviesResults.length === 0 && <h4>Sorry, there are no movies with {keyword}</h4>}
         <div className="row">
                 {
@@ -34,9 +37,13 @@ function Resultados (){
                 <div className="col-md-3" key={idx}> 
                     <div className="card">
                         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} className="card-img-top" alt="..."/>
+                        <button className="favorite-btn" 
+                        onClick={addOrRemoveFavs}
+                        data-movie-id={movie.id}
+                        >🖤</button>
                         <div className="card-body">
-                            <h5 className="card-title">{movie.title.substring(0,15)}...</h5>
-                            
+                        <h5 className="card-title">{movie.title.substring(0,15)}...</h5>
+                        <p className="card-text">{movie.overview.substring(0,100)}...</p>
                             <Link to={`/detalle?movieID=${movie.id}`} className="btn btn-primary">See more</Link>
                         </div>
                     </div>    
